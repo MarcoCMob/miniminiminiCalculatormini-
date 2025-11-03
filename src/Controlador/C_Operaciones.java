@@ -4,6 +4,7 @@
  */
 package Controlador;
 import Modelo.Operaciones;
+import java.util.regex.Pattern;
 import javax.swing.JTextArea;
 /**
  *
@@ -52,24 +53,31 @@ public class C_Operaciones {
 
     public void separaYGuarda(JTextArea text){
         String texto = text.getText();
-        char operador = ' ';
+        String operador = "";
         
-        if (texto.contains("+")) {
-            operador = '+';
-        } else if (texto.contains("-")) {
-            operador = '-';
-        } else if (texto.contains("*")) {
-            operador = '*';
-        } else if (texto.contains("/")) {
-            operador = '/';
+        if (texto.indexOf('+', 1) != -1) {
+            operador = "+";
+        } else if (texto.indexOf('-', 1) != -1) {
+            operador = "-";
+        } else if (texto.indexOf('*', 1) != -1) {
+            operador = "*";
+        } else if (texto.indexOf('/', 1) != -1) {
+            operador = "/";
+        }  
+        
+        String[] partes = texto.split(Pattern.quote(operador));
+        String parte1;
+        String parte2;
+        
+        if (texto.startsWith("-") && partes.length > 2) {
+            // Ejemplo: "-5*6" → split da ["", "5", "6"]
+            parte1 = "-" + partes[1];
+            parte2 = partes[2];
+        } else {
+            parte1 = partes[0];
+            parte2 = partes[1];
         }
-        
-        String[] partes = texto.split("\\" + operador); 
-        // "\\+" si el operador es + (el doble backslash es necesario para regex)
-        
-        String parte1 = partes[0]; // "15"
-        String parte2 = partes[1]; // "20"
-        System.out.println(parte1+parte2+operador);
+        System.out.println(operador+parte1+parte2);
         
         int a = Integer.parseInt(parte1.trim());
         int b = Integer.parseInt(parte2.trim());
@@ -77,13 +85,13 @@ public class C_Operaciones {
         operacion.setA(a);
         operacion.setB(b);
         
-        double resultado = 0;
-        switch (operador) {
-            case '+': resultado = suma(); break;
-            case '-': resultado = resta(); break;
-            case '*': resultado = multiplicacion(); break;
-            case '/': resultado = division(); break;
-        }
+        double resultado = switch (operador) {
+            case "+" -> suma();
+            case "-" -> resta();
+            case "*" -> multiplicacion();
+            case "/" -> division();
+            default -> 0;
+        };
         
         text.setText(String.format("%.1f", resultado));
 

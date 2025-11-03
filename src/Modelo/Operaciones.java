@@ -26,7 +26,7 @@ public class Operaciones {
     }
     
     public int multiplicacion(){
-        return a*b;
+        return (a)*(b);
     }
     
     public double division(){
