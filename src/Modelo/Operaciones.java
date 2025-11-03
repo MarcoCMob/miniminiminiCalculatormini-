@@ -31,7 +31,7 @@ public class Operaciones {
     
     public double division(){
         if(b!=0){
-            resultado = a / b;
+            resultado = (double) a / b;
             resultado = Math.round(resultado * 10.0) / 10.0;
         }
         return resultado;
