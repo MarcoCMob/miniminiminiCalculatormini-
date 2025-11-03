@@ -1,2 +1,3 @@
-only for two numbers. must be positive
+only for two numbers. must be positive.
+\n
 macOS only.
