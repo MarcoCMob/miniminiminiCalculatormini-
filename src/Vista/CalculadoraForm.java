@@ -6,6 +6,7 @@ package Vista;
 import javax.swing.ScrollPaneConstants;
 import Controlador.C_Operaciones;
 import Modelo.Operaciones;
+import javax.swing.JScrollPane;
 /**
  *
  * @author marcooo
@@ -22,48 +23,16 @@ public class CalculadoraForm extends javax.swing.JFrame {
             operandos.setB(num);
         }
     }
-    
-    public void separaYGuarda(){
-        String texto = txaResultado.getText();
-        char operador = ' ';
-        
-        if (texto.contains("+")) {
-            operador = '+';
-        } else if (texto.contains("-")) {
-            operador = '-';
-        } else if (texto.contains("*")) {
-            operador = '*';
-        } else if (texto.contains("/")) {
-            operador = '/';
-        }
-        
-        String[] partes = texto.split("\\" + operador); 
-        // "\\+" si el operador es + (el doble backslash es necesario para regex)
-        
-        String parte1 = partes[0]; // "15"
-        String parte2 = partes[1]; // "20"
-        System.out.println(parte1+parte2+operador);
-        
-        int a = Integer.parseInt(parte1.trim());
-        int b = Integer.parseInt(parte2.trim());
 
-        operandos.setA(a);
-        operandos.setB(b);
-        
-        double resultado = 0;
-        switch (operador) {
-            case '+': resultado = operandos.suma(); break;
-            case '-': resultado = operandos.resta(); break;
-            case '*': resultado = operandos.multiplicacion(); break;
-            case '/': resultado = operandos.division(); break;
-        }
-        
-         txaResultado.setText(String.format("%.1f", resultado));
-
-    }
     public CalculadoraForm() {
         initComponents();
         txaResultado.setText("0");
+        setSize(380, 620);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        jScrollPane2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane2.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
         
     }
 
@@ -96,19 +65,27 @@ public class CalculadoraForm extends javax.swing.JFrame {
         txaResultado = new javax.swing.JTextArea();
         cleanbutton = new javax.swing.JButton();
         num10 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        execButton.setBackground(new java.awt.Color(51, 51, 51));
+        execButton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        execButton.setForeground(new java.awt.Color(255, 255, 255));
         execButton.setText("EXEC");
         execButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 execButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(execButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 150, 91));
+        jPanel1.add(execButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 91, 150, 60));
 
+        num1.setBackground(new java.awt.Color(102, 102, 102));
+        num1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        num1.setForeground(new java.awt.Color(255, 255, 255));
         num1.setText("1");
         num1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +94,9 @@ public class CalculadoraForm extends javax.swing.JFrame {
         });
         jPanel1.add(num1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 70, 57));
 
+        num2.setBackground(new java.awt.Color(102, 102, 102));
+        num2.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        num2.setForeground(new java.awt.Color(255, 255, 255));
         num2.setText("2");
         num2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,14 +105,20 @@ public class CalculadoraForm extends javax.swing.JFrame {
         });
         jPanel1.add(num2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 70, 57));
 
-        division.setText("/ ");
+        division.setBackground(new java.awt.Color(255, 153, 0));
+        division.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        division.setForeground(new java.awt.Color(255, 255, 255));
+        division.setText("/");
         division.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 divisionActionPerformed(evt);
             }
         });
-        jPanel1.add(division, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, 57));
+        jPanel1.add(division, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, 70, 57));
 
+        num4.setBackground(new java.awt.Color(102, 102, 102));
+        num4.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        num4.setForeground(new java.awt.Color(255, 255, 255));
         num4.setText("4");
         num4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,6 +127,9 @@ public class CalculadoraForm extends javax.swing.JFrame {
         });
         jPanel1.add(num4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 70, 51));
 
+        num5.setBackground(new java.awt.Color(102, 102, 102));
+        num5.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        num5.setForeground(new java.awt.Color(255, 255, 255));
         num5.setText("5");
         num5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,6 +138,9 @@ public class CalculadoraForm extends javax.swing.JFrame {
         });
         jPanel1.add(num5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 70, 51));
 
+        num6.setBackground(new java.awt.Color(102, 102, 102));
+        num6.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        num6.setForeground(new java.awt.Color(255, 255, 255));
         num6.setText("6");
         num6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +149,9 @@ public class CalculadoraForm extends javax.swing.JFrame {
         });
         jPanel1.add(num6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 80, 51));
 
+        num7.setBackground(new java.awt.Color(102, 102, 102));
+        num7.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        num7.setForeground(new java.awt.Color(255, 255, 255));
         num7.setText("7");
         num7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,6 +160,9 @@ public class CalculadoraForm extends javax.swing.JFrame {
         });
         jPanel1.add(num7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 70, 52));
 
+        num8.setBackground(new java.awt.Color(102, 102, 102));
+        num8.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        num8.setForeground(new java.awt.Color(255, 255, 255));
         num8.setText("8");
         num8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,6 +171,9 @@ public class CalculadoraForm extends javax.swing.JFrame {
         });
         jPanel1.add(num8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, 70, 52));
 
+        num9.setBackground(new java.awt.Color(102, 102, 102));
+        num9.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        num9.setForeground(new java.awt.Color(255, 255, 255));
         num9.setText("9");
         num9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +182,9 @@ public class CalculadoraForm extends javax.swing.JFrame {
         });
         jPanel1.add(num9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 80, 52));
 
+        num3.setBackground(new java.awt.Color(102, 102, 102));
+        num3.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        num3.setForeground(new java.awt.Color(255, 255, 255));
         num3.setText("3");
         num3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,39 +193,56 @@ public class CalculadoraForm extends javax.swing.JFrame {
         });
         jPanel1.add(num3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 80, 57));
 
-        suma.setText("+ ");
+        suma.setBackground(new java.awt.Color(255, 153, 0));
+        suma.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        suma.setForeground(new java.awt.Color(255, 255, 255));
+        suma.setText("+");
         suma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sumaActionPerformed(evt);
             }
         });
-        jPanel1.add(suma, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, 57));
+        jPanel1.add(suma, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 70, 57));
 
-        resta.setText("- ");
+        resta.setBackground(new java.awt.Color(255, 153, 51));
+        resta.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        resta.setForeground(new java.awt.Color(255, 255, 255));
+        resta.setText("-");
         resta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 restaActionPerformed(evt);
             }
         });
-        jPanel1.add(resta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, -1, 57));
+        jPanel1.add(resta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 70, 57));
 
-        multi.setText("* ");
+        multi.setBackground(new java.awt.Color(255, 153, 0));
+        multi.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        multi.setForeground(new java.awt.Color(255, 255, 255));
+        multi.setText("*");
         multi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 multiActionPerformed(evt);
             }
         });
-        jPanel1.add(multi, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, -1, 57));
+        jPanel1.add(multi, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 70, 57));
 
-        jLabel1.setText("por: Marco Catro");
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("por: MarcoCMob");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 560, -1, -1));
 
+        txaResultado.setEditable(false);
+        txaResultado.setBackground(new java.awt.Color(0, 51, 51));
         txaResultado.setColumns(20);
+        txaResultado.setFont(new java.awt.Font("Palatino", 1, 48)); // NOI18N
+        txaResultado.setForeground(new java.awt.Color(51, 255, 0));
         txaResultado.setRows(5);
         jScrollPane2.setViewportView(txaResultado);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 180, 120));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 180, 80));
 
+        cleanbutton.setBackground(new java.awt.Color(102, 102, 102));
+        cleanbutton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        cleanbutton.setForeground(new java.awt.Color(255, 255, 255));
         cleanbutton.setText("CLEAN");
         cleanbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,6 +251,9 @@ public class CalculadoraForm extends javax.swing.JFrame {
         });
         jPanel1.add(cleanbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 350, -1));
 
+        num10.setBackground(new java.awt.Color(102, 102, 102));
+        num10.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        num10.setForeground(new java.awt.Color(255, 255, 255));
         num10.setText("0");
         num10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,6 +261,11 @@ public class CalculadoraForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(num10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 260, 52));
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("MINIcalculator");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -411,6 +440,7 @@ public class CalculadoraForm extends javax.swing.JFrame {
     private javax.swing.JButton division;
     private javax.swing.JButton execButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton multi;
