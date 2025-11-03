@@ -326,6 +326,9 @@ public class CalculadoraForm extends javax.swing.JFrame {
     private void sumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumaActionPerformed
         if(txaResultado.getText().equals("0"))
         controlador.llenatxA(txaResultado, "0+");
+        else{
+            controlador.llenatxA(txaResultado, "+");
+        }
     }//GEN-LAST:event_sumaActionPerformed
 
     private void execButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_execButtonActionPerformed
@@ -339,16 +342,26 @@ public class CalculadoraForm extends javax.swing.JFrame {
     private void restaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaActionPerformed
         if(txaResultado.getText().equals("0"))
         controlador.llenatxA(txaResultado, "0-");
+        else {
+            controlador.llenatxA(txaResultado, "-");
+        }
+        
     }//GEN-LAST:event_restaActionPerformed
 
     private void multiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiActionPerformed
         if(txaResultado.getText().equals("0"))
         controlador.llenatxA(txaResultado, "0*");
+        else{
+            controlador.llenatxA(txaResultado, "*");
+        }
     }//GEN-LAST:event_multiActionPerformed
 
     private void divisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_divisionActionPerformed
         if(txaResultado.getText().equals("0"))
         controlador.llenatxA(txaResultado, "0/");
+        else{
+            controlador.llenatxA(txaResultado, "/");
+        }
     }//GEN-LAST:event_divisionActionPerformed
 
     private void num10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_num10ActionPerformed
